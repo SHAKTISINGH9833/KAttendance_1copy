@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+  android:layout_width="fill_parent"
+  android:layout_height="fill_parent"
+  xmlns:app="http://schemas.android.com/apk/res-auto"
+  android:background="@color/white"
+  android:gravity="center"
+  android:orientation="vertical"
+  android:configChanges="orientation|keyboardHidden|screenSize"
+  android:windowSoftInputMode="stateUnchanged|adjustResize"
+  android:padding="10dp">
+
+         <ImageView
+           android:id="@+id/logo"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:src="@drawable/ic_icons"
+           android:layout_marginTop="50dp"
+           android:transitionName="logo"
+           app:layout_constraintTop_toTopOf="parent"
+           app:layout_constraintLeft_toLeftOf="parent"
+           app:layout_constraintRight_toRightOf="parent"
+           android:contentDescription="TODO" />
+
+        <TextView
+          android:id="@+id/label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/kattendance"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:padding="10dp"
+        android:transitionName="logo_name"
+        app:layout_constraintTop_toBottomOf="@+id/logo"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:layout_marginBottom="5dp"
+        android:textColor="@color/colorAccent"
+        android:fontFamily="sans-serif-light"></TextView>
+
+
+
+            <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+             android:layout_gravity="center_vertical"
+            android:orientation="vertical"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent">
+
+
+
+
+            <EditText
+                android:id="@+id/inputTypeMobile"
+                android:layout_width="fill_parent"
+                android:maxLength="10"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:background="@drawable/edit_text_background_layout"
+                android:hint="Mobile Number"
+                android:padding="10dp"
+                android:fontFamily="sans-serif-light"
+                android:singleLine="true"
+                android:inputType="number"
+                android:textColor="@color/input_login"
+                android:textColorHint="@color/input_login_hint" />
+
+            <Button
+                android:id="@+id/btnLogin"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dip"
+                android:background="@drawable/rounded_shape"
+                android:text="Login"
+                android:fontFamily="sans-serif-light"
+                android:textColor="@color/white" />
+
+              <Button
+                android:id="@+id/btnRegister"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dip"
+                android:background="@drawable/rounded_boarder_color"
+                android:text="Register Now"
+                android:textColor="@color/quantum_black_text"
+                android:fontFamily="sans-serif-light" />
+
+            <!-- Link to Login Screen -->
+
+
+        </LinearLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

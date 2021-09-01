@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  android:id="@+id/scrollView1"
+  android:layout_width="fill_parent"
+  android:layout_height="wrap_content"
+  android:scrollbarAlwaysDrawVerticalTrack="true">
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:app="http://schemas.android.com/apk/res-auto"
+  android:orientation="vertical"
+  android:layout_width="match_parent"
+  android:layout_height="match_parent">
+
+  <LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:layout_marginLeft="10dp"
+    android:layout_marginRight="10dp">
+
+    <TextView
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:text="DESCRIPTION"
+      android:layout_marginTop="10dp"/>
+    <com.google.android.material.textfield.TextInputLayout
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:id="@+id/tildescription"
+      app:hintEnabled="false">
+    <EditText
+      android:id="@+id/description"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"/>
+    </com.google.android.material.textfield.TextInputLayout>
+
+
+    <TextView
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:text="DATE"
+      android:layout_marginTop="10dp"/>
+    <com.google.android.material.textfield.TextInputLayout
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:id="@+id/tilDate"
+      app:hintEnabled="false">
+      <EditText
+        android:id="@+id/inputTypeDate"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="right"
+        android:focusable="false"
+        android:focusableInTouchMode="false"
+        android:fontFamily="sans-serif-light"
+        android:hint="Select Date"
+        android:inputType="date"
+        android:singleLine="true"
+        android:textAllCaps="true"
+        android:textColor="@color/input_login"
+        android:textColorHint="@color/input_login_hint" />
+      <!--android:background="@drawable/edit_text_background_layout"-->
+     </com.google.android.material.textfield.TextInputLayout>
+
+    <TextView
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:layout_marginTop="10dp"
+      android:text="PARTICULARS"/>
+    <com.google.android.material.textfield.TextInputLayout
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:id="@+id/tilParticulars"
+      app:hintEnabled="false">
+    <EditText
+      android:id="@+id/particulars"
+      android:layout_width="match_parent"
+      android:gravity="top"
+      android:layout_height="100dp"
+      />
+    </com.google.android.material.textfield.TextInputLayout>
+
+
+    <TextView
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:layout_marginTop="10dp"
+      android:text="AMOUNT(₹)"/>
+      <com.google.android.material.textfield.TextInputLayout
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       android:id="@+id/tilamount"
+       app:hintEnabled="false">
+      <EditText
+      android:id="@+id/amount"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      />
+    </com.google.android.material.textfield.TextInputLayout>
+
+  <TextView
+  android:layout_width="wrap_content"
+  android:layout_height="wrap_content"
+  android:layout_marginTop="10dp"
+  android:text="UPLOAD IMAGE Of RECEIPT" />
+  <ImageView
+    android:layout_marginTop="10dp"
+    android:layout_marginBottom="10dp"
+  android:id="@+id/upload"
+  android:layout_width="350dp"
+  android:layout_height="130dp"
+  android:adjustViewBounds="true"
+  android:layout_gravity="center"
+  android:src="@drawable/image_upload"/>
+    <!--<TextView
+      android:id="@+id/uploadstatus"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:text="HELLO"
+      android:layout_gravity="center"
+      android:visibility="gone"/>-->
+
+  <!--  <LinearLayout
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:orientation="vertical">
+
+      <Button
+        android:id="@+id/btnupload"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="upload"
+        android:layout_gravity="center"
+        android:gravity="center"
+        />
+
+      <TextView
+        android:id="@+id/txtupload"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="upload"
+        android:layout_gravity="center"
+        android:visibility="gone"
+        />
+    </LinearLayout>-->
+
+
+    <LinearLayout
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:orientation="horizontal"
+
+      android:layout_gravity="center">
+
+ <!-- <Button
+    android:id="@+id/addMore"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_weight="1"
+    android:text="ADD MORE"/>-->
+
+  <Button
+    android:id="@+id/submit"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_weight="1"
+    android:text="SUBMIT"/>
+</LinearLayout>
+
+
+  </LinearLayout>
+</LinearLayout>
+</ScrollView>

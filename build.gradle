@@ -1,0 +1,27 @@
+
+
+buildscript {
+    repositories {
+        jcenter()
+        maven { url "https://maven.google.com/"}
+    }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:4.0.2'
+        classpath 'com.google.gms:google-services:4.3.4'
+        classpath 'com.android.tools.build:gradle:4.0.2'
+    }
+}
+
+allprojects {
+    repositories {
+        jcenter()
+        google()
+        maven {
+          url 'https://maven.google.com'
+      }
+    }
+}
+
+task clean(type: Delete) {
+    delete rootProject.buildDir
+}

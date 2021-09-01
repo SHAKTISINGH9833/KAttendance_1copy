@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:fitsSystemWindows="true"
+  xmlns:card_view="http://schemas.android.com/apk/res-auto"
+  >
+
+  <androidx.cardview.widget.CardView
+  android:layout_width="match_parent"
+  android:layout_height="wrap_content"
+    android:layout_gravity="center"
+    android:layout_margin="5dp"
+    android:elevation="3dp"
+    card_view:cardCornerRadius="4dp">
+
+    <RelativeLayout
+      android:layout_width="match_parent"
+      android:layout_height="match_parent">
+      <TextView
+        android:id="@+id/txttitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="6dp"
+        android:textSize="16dp"
+        android:maxLength="25"
+        android:fontFamily="sans-serif-medium"
+        android:text="Title"
+        android:layout_gravity="start"
+        android:layout_marginLeft="20dp"
+        android:gravity="left"
+        />
+      <TextView
+        android:id="@+id/txtDescription"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="6dp"
+        android:textSize="14dp"
+        android:fontFamily="sans-serif-thin"
+        android:text="Description"
+        android:layout_gravity="start"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="30dp"
+        android:gravity="left"/>
+      <!--android:maxLength="25"-->
+
+      <TextView
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:text="From Date"
+      android:fontFamily="sans-serif-light"
+      android:textSize="15dp"
+
+      android:id="@+id/txtFromDate"
+      android:layout_marginLeft="20dp"
+      android:layout_marginTop="70dp"
+      ></TextView>
+      <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="To Date"
+        android:fontFamily="sans-serif-light"
+        android:textSize="15dp"
+
+        android:id="@+id/txtToDate"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="95dp"
+        ></TextView>
+      <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Rejoin Date"
+        android:fontFamily="sans-serif-light"
+        android:textSize="15dp"
+
+        android:id="@+id/txtRejoinDate"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="120dp"
+        android:paddingBottom="5dp"
+        ></TextView>
+
+      <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Status"
+        android:fontFamily="sans-serif-light"
+        android:textSize="15dp"
+        android:paddingRight="10dp"
+        android:id="@+id/txtStatus"
+        android:layout_alignParentRight="true"
+        android:layout_marginTop="10dp"
+
+        ></TextView>
+
+    </RelativeLayout>
+  </androidx.cardview.widget.CardView>
+
+</RelativeLayout>

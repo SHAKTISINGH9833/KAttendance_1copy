@@ -1,0 +1,23 @@
+<resources>
+    <string name="app_name">K.I.O</string>
+    <string name="drawer_open">Open</string>
+    <string name="drawer_close">Close</string>
+    <string name="transition_string">hello</string>
+    <string name="title_fingerprint">One-touch Fingerprint Verification</string>
+    <string name="desc_fingerprint">Please place your fingertip on the scanner to verify your identity</string>
+    <string name="note">(Your device should have at least one fingerprint registered in device settings)</string>
+
+    <!--  <string name="google_api">AIzaSyCyeo_MZy7WH-Qa5pvs7qhNkUT3ee01Vjc</string>-->
+
+
+    <string name="google_api">AIzaSyDDEvcr5n7RsgC4AviuKj9cI5WpoLffUDA</string>
+    <string name="kattendance">Kattendance</string>
+
+    <string-array name="typeofleave">
+        <item>Casual Leave</item>
+        <item>Privilege Leave</item>
+        <item>Sick Leave</item>
+    </string-array>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+</resources>

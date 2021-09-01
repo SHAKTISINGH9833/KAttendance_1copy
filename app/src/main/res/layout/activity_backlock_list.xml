@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+  android:layout_width="wrap_content"
+  android:layout_height="wrap_content"
+  android:shrinkColumns="*"
+  android:stretchColumns="*"
+  android:background="#ffffff">
+
+
+
+
+    <TableRow
+      android:id="@+id/tableRow1"
+      android:layout_margin="0dp"
+      android:layout_height="wrap_content"
+      android:layout_width="wrap_content">
+
+      <TextView
+        android:id="@+id/TextView05"
+        android:text="Date"
+        android:layout_weight="3"
+        android:background="#fb5404"
+        android:textColor="#fff"
+
+        android:padding="20dip"
+        android:gravity="center"/>
+
+
+
+      <TextView
+        android:id="@+id/TextView07"
+        android:text="Time in"
+        android:layout_weight="3"
+        android:background="#fb5404"
+        android:textColor="#fff"
+
+        android:padding="20dip"
+        android:gravity="end"/>
+
+
+
+      <TextView
+        android:id="@+id/TextView04"
+        android:text="Time out"
+
+        android:layout_weight="3"
+        android:background="#fb5404"
+        android:textColor="#fff"
+        android:padding="20dip"
+        android:gravity="end"/>
+      <TextView
+        android:id="@+id/edit"
+        android:text="Update"
+
+        android:layout_weight="1"
+        android:background="#fb5404"
+        android:textColor="#fff"
+        android:padding="20dip"
+        android:gravity="end"/>
+
+
+
+
+    </TableRow>
+
+    <androidx.recyclerview.widget.RecyclerView
+      android:layout_width="match_parent"
+      android:layout_height="match_parent"
+      android:id="@+id/qeuetionrcyclivwe"
+      android:textSize="18sp"
+      android:fontFamily="sans-serif"
+      android:textStyle="bold"
+      android:layout_marginBottom="15dp"
+
+      ></androidx.recyclerview.widget.RecyclerView>
+
+
+
+
+  </TableLayout>
+
+
+
+
+
+
+
+

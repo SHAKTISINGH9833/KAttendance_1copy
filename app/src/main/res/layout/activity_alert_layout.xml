@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+  android:layout_width="fill_parent"
+  android:layout_height="wrap_content"
+  xmlns:app="http://schemas.android.com/apk/res-auto"
+  android:padding="10dp"
+  android:backgroundTint="#F86119"
+  android:background="@drawable/rounded_box"
+  android:layout_gravity="center"
+  android:layout_marginLeft="10dp"
+  android:layout_marginRight="10dp">
+
+  <RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+      android:id="@+id/top"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:orientation="horizontal">
+      <ImageView
+        android:id="@+id/image"
+        android:src="@drawable/ic_verified"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_marginLeft="10dp"
+        android:layout_gravity="center_vertical"
+        />
+
+      <TextView
+        android:id="@+id/text"
+        android:layout_marginLeft="60dp"
+        android:layout_width="fill_parent"
+        android:textSize="18dp"
+        android:layout_height="wrap_content"
+        android:textColor="#ffffff"
+        android:layout_gravity="center_vertical"
+        />
+    </LinearLayout>
+
+
+    <LinearLayout
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:orientation="vertical"
+      android:layout_below="@+id/top">
+
+      <EditText
+        android:id="@+id/inputTypeReason"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="#ffff"
+        android:hint="Enter Reason"
+        android:inputType="textMultiLine"
+        android:padding="10dp"
+        android:layout_gravity="top"
+        android:layout_marginTop="15dp"
+        android:fontFamily="sans-serif-light"
+        android:singleLine="true"
+        android:textColor="@color/colorAccent"
+        android:textColorHint="@color/colorAccent" />
+
+      <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingTop="20dp">
+
+        <Button
+          android:id="@+id/dialogButtonCancel"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_gravity="left"
+          android:background="@drawable/rounded_shape"
+          android:backgroundTint="#D85211"
+          android:textColor="@color/white"
+          android:text=" Cancel "
+          />
+
+        <Button
+          android:id="@+id/dialogButtonWorkFromHome"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_toRightOf="@+id/dialogButtonCancel"
+          android:layout_toLeftOf="@+id/dialogButtonOK"
+          android:background="@drawable/rounded_shape"
+          android:backgroundTint="#D85211"
+          android:textColor="@color/white"
+          android:layout_marginLeft="30dp"
+          android:layout_marginRight="30dp"
+          android:text="Work At Home"
+          />
+
+        <Button
+          android:id="@+id/dialogButtonOK"
+          android:layout_width="100dp"
+          android:layout_height="wrap_content"
+          android:layout_gravity="right"
+          android:layout_alignParentRight="true"
+          android:backgroundTint="#D85211"
+          android:textColor="@color/white"
+          android:background="@drawable/rounded_shape"
+          android:text=" Ok "
+          />
+
+      </RelativeLayout>
+    </LinearLayout>
+  </RelativeLayout>
+
+
+</FrameLayout>

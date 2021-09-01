@@ -1,0 +1,299 @@
+{
+  "project_info": {
+    "project_number": "834320809508",
+    "firebase_url": "https://knasocial-ff0bc.firebaseio.com",
+    "project_id": "knasocial-ff0bc",
+    "storage_bucket": "knasocial-ff0bc.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:834320809508:android:f32aee40612cd789",
+        "android_client_info": {
+          "package_name": "com.kailasa.kanalytics"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "834320809508-d15pfp3i9goiek5nc017hvspvhdiv3o8.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.kailasa.kanalytics",
+            "certificate_hash": "967360b8c786f60766d3091a2a70c61f72b5306c"
+          }
+        },
+        {
+          "client_id": "834320809508-0idogoq32ce0vt482c02n399n2epb4s5.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.kailasa.kanalytics",
+            "certificate_hash": "9eaa0b13ec4c9a02404a2ed780febd2cd9c37e43"
+          }
+        },
+        {
+          "client_id": "834320809508-g5vs5jc8tmkto8cbt1fsh5emv5ntvn1q.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCMC2Osx-z7umE-ZNE8U8n0r52l3T4HHvA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "834320809508-pgc9v165vmee092mluo4h1f1b6t8m9up.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "834320809508-4a927han02l14bfttu6v7jadsls0spbe.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "in.kanalytics.dashboard.kmovie"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:834320809508:android:5947b492c78bded1",
+        "android_client_info": {
+          "package_name": "com.kanalytics.morth"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "834320809508-5p73najhj2ccruf3ubb1pc38iklc34io.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.kanalytics.morth",
+            "certificate_hash": "058dfcdfb6506524d60d01780e128214c92b3b98"
+          }
+        },
+        {
+          "client_id": "834320809508-s9rcfaf1nfcu987949ip5rbdbolvu9v7.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.kanalytics.morth",
+            "certificate_hash": "9eaa0b13ec4c9a02404a2ed780febd2cd9c37e43"
+          }
+        },
+        {
+          "client_id": "834320809508-g5vs5jc8tmkto8cbt1fsh5emv5ntvn1q.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCMC2Osx-z7umE-ZNE8U8n0r52l3T4HHvA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "834320809508-pgc9v165vmee092mluo4h1f1b6t8m9up.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "834320809508-4a927han02l14bfttu6v7jadsls0spbe.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "in.kanalytics.dashboard.kmovie"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:834320809508:android:82e24e1745c541f7",
+        "android_client_info": {
+          "package_name": "in.kanalytics.dashboard.kmovie"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "834320809508-mjp97d935b752nka0khqtapdag6cqp68.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "in.kanalytics.dashboard.kmovie",
+            "certificate_hash": "dcccbc8d22fd830cb4454ae4c6a2a2fdeb0d71f9"
+          }
+        },
+        {
+          "client_id": "834320809508-g5vs5jc8tmkto8cbt1fsh5emv5ntvn1q.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCMC2Osx-z7umE-ZNE8U8n0r52l3T4HHvA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "834320809508-pgc9v165vmee092mluo4h1f1b6t8m9up.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "834320809508-4a927han02l14bfttu6v7jadsls0spbe.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "in.kanalytics.dashboard.kmovie"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:834320809508:android:6402325d8138a986",
+        "android_client_info": {
+          "package_name": "in.kanalytics.dashboard.knabanking"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "834320809508-6iicb9ffa76s8ouhdqtoffgk0h60kner.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "in.kanalytics.dashboard.knabanking",
+            "certificate_hash": "6da5def53cbebb6768d811de3858912c9840ee8e"
+          }
+        },
+        {
+          "client_id": "834320809508-f721gjieppjkpk8j016b16ohuvofftcs.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "in.kanalytics.dashboard.knabanking",
+            "certificate_hash": "dcccbc8d22fd830cb4454ae4c6a2a2fdeb0d71f9"
+          }
+        },
+        {
+          "client_id": "834320809508-c2bih35tkqm6bavqpbpch5uptrhn3dpl.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "in.kanalytics.dashboard.knabanking",
+            "certificate_hash": "9eaa0b13ec4c9a02404a2ed780febd2cd9c37e43"
+          }
+        },
+        {
+          "client_id": "834320809508-g5vs5jc8tmkto8cbt1fsh5emv5ntvn1q.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCMC2Osx-z7umE-ZNE8U8n0r52l3T4HHvA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "834320809508-pgc9v165vmee092mluo4h1f1b6t8m9up.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "834320809508-4a927han02l14bfttu6v7jadsls0spbe.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "in.kanalytics.dashboard.kmovie"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:834320809508:android:764d2cb7da3280eb",
+        "android_client_info": {
+          "package_name": "io.ionic.starter"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "834320809508-5r76v7u7v5d9kja8hg2piihqofoi1so6.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "io.ionic.starter",
+            "certificate_hash": "9eaa0b13ec4c9a02404a2ed780febd2cd9c37e43"
+          }
+        },
+        {
+          "client_id": "834320809508-g5vs5jc8tmkto8cbt1fsh5emv5ntvn1q.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCMC2Osx-z7umE-ZNE8U8n0r52l3T4HHvA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "834320809508-pgc9v165vmee092mluo4h1f1b6t8m9up.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "834320809508-4a927han02l14bfttu6v7jadsls0spbe.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "in.kanalytics.dashboard.kmovie"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:834320809508:android:c6f6f2fe24713a77",
+        "android_client_info": {
+          "package_name": "kattendance.dashboard.kanalytics.in.kattendance"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "834320809508-g5vs5jc8tmkto8cbt1fsh5emv5ntvn1q.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCMC2Osx-z7umE-ZNE8U8n0r52l3T4HHvA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "834320809508-pgc9v165vmee092mluo4h1f1b6t8m9up.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "834320809508-4a927han02l14bfttu6v7jadsls0spbe.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "in.kanalytics.dashboard.kmovie"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

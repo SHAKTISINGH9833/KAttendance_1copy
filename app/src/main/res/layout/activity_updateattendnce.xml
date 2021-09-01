@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+  android:orientation="vertical"
+    tools:context=".Updateattendnce">
+
+  <LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="end"
+    android:layout_marginTop="5dip"
+    android:layout_marginRight="10dip"
+    >
+    <TextView
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:text="Date : "
+      android:textColor="@color/colorPrimary"
+      android:textStyle="bold"
+      android:textSize="17sp"
+      >
+
+    </TextView>
+    <TextView
+      android:id="@+id/datefetch"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:text="10-01-2021"
+      android:textStyle="italic"
+      android:textSize="17sp"
+      >
+
+    </TextView>
+
+
+  </LinearLayout>
+  <LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="10dip"
+    android:layout_marginLeft="20dip"
+    android:layout_marginRight="20dip"
+    android:orientation="horizontal">
+  <LinearLayout
+    android:layout_width="wrap_content"
+    android:layout_height="match_parent"
+    android:layout_marginRight="10dp"
+
+
+
+    >
+
+    <TextView
+      android:layout_width="wrap_content"
+      android:layout_height="match_parent"
+      android:text="IN: "
+      android:textColor="@color/colorPrimary"
+      android:textStyle="bold"
+      android:textSize="17sp"
+      >
+
+    </TextView>
+    <TextView
+    android:id="@+id/loginedit"
+      android:layout_width="wrap_content"
+      android:layout_height="match_parent"
+      android:text="00:00:00"
+      android:textStyle="bold"
+      android:textSize="17sp"
+      android:textColor="#ff0000"
+      >
+
+    </TextView>
+  </LinearLayout>
+    <LinearLayout
+      android:layout_width="wrap_content"
+      android:layout_height="match_parent"
+      android:padding="1dp"
+
+
+
+
+      >
+    <TextView
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:text="OUT: "
+      android:textColor="@color/colorPrimary"
+      android:textStyle="bold"
+      android:textSize="17sp"
+
+      >
+
+    </TextView>
+    <TextView
+       android:id="@+id/logoutedit"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:text="00:00:00"
+      android:textStyle="bold"
+      android:textSize="17sp"
+      android:textColor="#ff0000"
+      >
+
+    </TextView>
+    </LinearLayout>
+
+  </LinearLayout>
+  <LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginLeft="10dip"
+    android:layout_marginTop="10dip"
+    android:layout_marginRight="10dip"
+
+    android:gravity="start"
+    android:padding="10dip"
+
+    >
+
+    <EditText
+      android:id="@+id/resoenedit"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:padding="10dip"
+     android:hint="Reason"
+      android:background="@drawable/edit_text_background_layout"
+      android:textStyle="italic"
+      android:textSize="17sp"
+      >
+
+    </EditText>
+  </LinearLayout>
+  <LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginLeft="10dip"
+    android:layout_marginTop="10dip"
+    android:layout_marginRight="10dip"
+
+    android:gravity="start"
+    android:padding="10dip"
+
+    >
+
+    <Button
+      android:id="@+id/updateid"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:padding="10dip"
+      android:hint="Update"
+      android:background="@drawable/rounded_shape"
+      android:textStyle="italic"
+      android:textSize="17sp"
+
+      android:textColorHint="@color/white"
+      >
+
+    </Button>
+  </LinearLayout>
+</LinearLayout>
