@@ -33,6 +33,7 @@ import javax.crypto.KeyGenerator;
 import javax.crypto.NoSuchPaddingException;
 import javax.crypto.SecretKey;
 
+@RequiresApi(api = Build.VERSION_CODES.M)
 public class FingerprintActivity extends AppCompatActivity {
     private KeyStore keyStore;
     private static final String KEY_NAME = "androidHive";

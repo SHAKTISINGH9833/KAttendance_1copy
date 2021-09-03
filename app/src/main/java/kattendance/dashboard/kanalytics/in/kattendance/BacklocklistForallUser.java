@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.app.DatePickerDialog;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
@@ -13,6 +14,9 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.DatePicker;
+import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.Toast;
 
@@ -25,18 +29,29 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import butterknife.BindView;
+import butterknife.OnClick;
 
 public class BacklocklistForallUser extends AppCompatActivity implements Spinner.OnItemSelectedListener{
   public static final String Feedbacksave = "https://dashboard.kanalytics.in/mobile_app/grumble_morth/android/questioners_list_save_v2.php";
   //Declaring an Spinner
 
   private Spinner spinner;
-
-  String user_id,authority_id;
+  EditText inputDate;
+  LinearLayout NoDAta;
+  String currentDateandTime;
+  DatePickerDialog.OnDateSetListener date;
+  java.util.Calendar myCalendar;
+  DatePickerDialog datePickerDialog;
+  String userid,authority_id,User_id;
   SharedPreferences pref,shared;
   private ArrayList<String> students;
   private static final String USERBACKLOCKLIST_ADMIN = "https://dashboard.kanalytics.in/mobile_app/attendance/backlog_adminlist.php";
@@ -56,15 +71,42 @@ public class BacklocklistForallUser extends AppCompatActivity implements Spinner
       ab.setDisplayHomeAsUpEnabled(true);
       students = new ArrayList<String>();
       recyclerView =findViewById(R.id.userdetailsid);
+     NoDAta=findViewById(R.id.nodataid);
       backlockuserlistadminmodelList=new ArrayList<>();
       //Initializing Spinner
       spinner = (Spinner) findViewById(R.id.userlistid);
       shared = getSharedPreferences("info", MODE_PRIVATE);
+      User_id=shared.getString("user_id","");
       authority_id=shared.getString("team_lead","");
-
+      Log.e("adimdid",authority_id);
+      inputDate=findViewById(R.id.inputTypeDateRepotingPeople);
+      inputDate.setOnClickListener(new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+          selectDate();
+        }
+      });
       //Adding an Item Selected Listener to our Spinner
       //As we have implemented the class Spinner.OnItemSelectedListener to this class iteself we are passing this to setOnItemSelectedListener
       spinner.setOnItemSelectedListener(this);
+      SimpleDateFormat date_format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+       currentDateandTime = date_format.format(new Date());
+      myCalendar = java.util.Calendar.getInstance();
+      date = new DatePickerDialog.OnDateSetListener() {
+        @Override
+        public void onDateSet(DatePicker view, int year, int monthOfYear,
+                              int dayOfMonth) {
+          myCalendar.set(java.util.Calendar.YEAR, year);
+          myCalendar.set(java.util.Calendar.MONTH, monthOfYear);
+          myCalendar.set(java.util.Calendar.DAY_OF_MONTH, dayOfMonth);
+          String myFormat = "dd-MM-yyyy";
+          SimpleDateFormat sdf = new SimpleDateFormat(myFormat);
+          inputDate.setText(sdf.format(myCalendar.getTime()));
+          backlockuserlistadminmodelList.clear();
+          Listuserbacklockaadminside(sdf.format(myCalendar.getTime()));
+        }
+      };
+
       getData();
 
     }
@@ -112,10 +154,10 @@ public class BacklocklistForallUser extends AppCompatActivity implements Spinner
   public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
     //Setting the values to textviews for a selected item
 
-    user_id=getuser_id(position);
+    userid=getuser_id(position);
 
-    Log.i("selectedid",user_id);
-    Listuserbacklockaadminside(user_id);
+    Log.i("selectedid",userid);
+    Listuserbacklockaadminside(currentDateandTime);
 
   }
 
@@ -135,14 +177,22 @@ public class BacklocklistForallUser extends AppCompatActivity implements Spinner
 
 
           j = new JSONObject(s);
+          String error=j.getString("error");
 
-          //Storing the Array of JSON String to our JSON Array
-          result = j.getJSONArray(Config.JSON_ARRAY);
+          if(error.equals("false"))
+          {
+            NoDAta.setVisibility(View.VISIBLE);
+          }
+          else {
+            //Storing the Array of JSON String to our JSON Array
+            result = j.getJSONArray(Config.JSON_ARRAY);
 
 
+            getQuestionlist(result);
+          }
 
           //Calling method getStudents to get the students from the JSON Array
-          getQuestionlist(result);
+
 
 
         } catch (JSONException e) {
@@ -159,7 +209,7 @@ public class BacklocklistForallUser extends AppCompatActivity implements Spinner
       @Override
       protected Map<String, String> getParams() {
         Map<String, String> params = new HashMap<String, String>();
-        params.put("admin", authority_id);
+        params.put("admin", User_id);
         params.put("action", "userlist");
         return params;
       }
@@ -170,7 +220,9 @@ public class BacklocklistForallUser extends AppCompatActivity implements Spinner
 
 
 
-  private void Listuserbacklockaadminside(String user_id) {
+  private void Listuserbacklockaadminside(final String currentDateandTime) {
+
+
     backlockuserlistadminmodelList.clear();
 //    checkConnection();
     String tag_string_req = "req_register";
@@ -250,9 +302,11 @@ public class BacklocklistForallUser extends AppCompatActivity implements Spinner
 
         Map<String, String> params = new HashMap<String, String>();
 
-        params.put("admin", authority_id);
+        params.put("admin", User_id);
         params.put("action", "backlog");
-        params.put("user", user_id);
+        params.put("user", userid);
+        params.put("month", currentDateandTime);
+
 //        params.put("user_phone_imei", imei_no);
         return params;
       }
@@ -264,5 +318,13 @@ public class BacklocklistForallUser extends AppCompatActivity implements Spinner
   public boolean onOptionsItemSelected(MenuItem item) {
     onBackPressed();
     return true;
+  }
+
+
+  public void selectDate(){
+    DatePickerDialog dp = new DatePickerDialog(BacklocklistForallUser.this, date, myCalendar
+      .get(java.util.Calendar.YEAR), myCalendar.get(java.util.Calendar.MONTH),
+      myCalendar.get(java.util.Calendar.DAY_OF_MONTH));
+    dp.show();
   }
 }

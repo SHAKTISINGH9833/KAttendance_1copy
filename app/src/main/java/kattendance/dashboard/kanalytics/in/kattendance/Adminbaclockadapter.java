@@ -1,9 +1,13 @@
 package kattendance.dashboard.kanalytics.in.kattendance;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.app.Dialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -31,8 +35,11 @@ public class Adminbaclockadapter extends RecyclerView.Adapter<Adminbaclockadapte
   private Activity activity;
   LayoutInflater inflater;
   public String value;
+  private Context context;
+
   SharedPreferences pref,shared;
   String userid,baclockid,data,admin;
+  Dialog dialog,dialog1;
 
   //    List<questionanssetmodel> setlis =new ArrayList<>();
   ArrayList<String> listOfSelectedCheckBoxId = new ArrayList();
@@ -74,14 +81,24 @@ public class Adminbaclockadapter extends RecyclerView.Adapter<Adminbaclockadapte
     holder.acceptbt.setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View v) {
+
+
         accepted_leave();
+        Toast.makeText(v.getContext(),"Accepted", Toast.LENGTH_LONG).show();
+        questionlist.remove(position);
+        notifyDataSetChanged();
 
       }
     });
     holder.denybt.setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View v) {
+
+
         denied_leave();
+        Toast.makeText(v.getContext(),"Deny", Toast.LENGTH_LONG).show();
+        questionlist.remove(position);
+        notifyDataSetChanged();
 
       }
     });
@@ -130,6 +147,8 @@ public class Adminbaclockadapter extends RecyclerView.Adapter<Adminbaclockadapte
       ACCEPTED_Att, new Response.Listener<String>() {
       @Override
       public void onResponse(String s) {
+
+
         acceptnotificationToUser();
       }
     }, new Response.ErrorListener() {
@@ -162,6 +181,7 @@ public class Adminbaclockadapter extends RecyclerView.Adapter<Adminbaclockadapte
       DENIED_Att, new Response.Listener<String>() {
       @Override
       public void onResponse(String s) {
+
         denynotificationToUser();
       }
     }, new Response.ErrorListener() {

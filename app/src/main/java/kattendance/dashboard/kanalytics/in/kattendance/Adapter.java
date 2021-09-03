@@ -15,6 +15,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.DiffUtil;
 import androidx.recyclerview.widget.RecyclerView;
 
 
@@ -35,6 +36,10 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder> {
     this.inflater = LayoutInflater.from(ctx);
     this.questionlist = questionlist;
   }
+  public void updateList(ArrayList<Backlockmodel> newList) {
+    DiffUtil.DiffResult diffResult = DiffUtil.calculateDiff(new MyDiffCallback(this.questionlist, newList));
+    diffResult.dispatchUpdatesTo(this);
+  }
 
   public Adapter() {
 
@@ -50,7 +55,7 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder> {
 
   @Override
   public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-
+    final Backlockmodel backlockmodel = questionlist.get(position);
     String data = questionlist.get(position).getDate();
     holder.txtDateList.setText(data);
     holder.txtTimeInList.setText(questionlist.get(position).getCheckin());
@@ -58,6 +63,8 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder> {
     holder.update.setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View v) {
+
+
         Intent intent = new Intent(v.getContext(),Updateattendnce.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         intent.putExtra("Date",questionlist.get(position).getDate());
@@ -68,7 +75,8 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder> {
 //        Bundle bundle = new Bundle();
 //        bundle.putString("key_1",url);
 //        intent.putExtras(bundle);
-
+        questionlist.remove(position);
+        notifyDataSetChanged();
 //        Toast.makeText(inflater.getContext(), "item selected", Toast.LENGTH_SHORT).show();
       }
     });

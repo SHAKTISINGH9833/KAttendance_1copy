@@ -102,6 +102,7 @@ public class BacklockList extends AppCompatActivity {
         } catch (JSONException e) {
           e.printStackTrace();
         }
+        adapter.notifyDataSetChanged();
       }
     }, new Response.ErrorListener() {
       @Override
