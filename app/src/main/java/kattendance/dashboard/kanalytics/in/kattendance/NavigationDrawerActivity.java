@@ -877,6 +877,14 @@ public class NavigationDrawerActivity extends AppCompatActivity implements Conne
             startActivity(backlockusre);
             drawerLayout.closeDrawers();
             break;
+          case R.id.backlockstatus:
+
+            Intent backlockstatus = new Intent(NavigationDrawerActivity.this, Backlockstatus.class);
+            startActivity(backlockstatus);
+            drawerLayout.closeDrawers();
+            break;
+
+
       }
 
         return false;

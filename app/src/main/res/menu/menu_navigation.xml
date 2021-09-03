@@ -63,6 +63,11 @@
         android:title="Back Lock User"
         android:icon="@mipmap/ic_tickmark"
         />
+      <item
+        android:id="@+id/backlockstatus"
+        android:title="Back Lock Status"
+        android:icon="@mipmap/ic_tickmark"
+        />
 
 
 

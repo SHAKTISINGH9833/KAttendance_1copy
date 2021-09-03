@@ -2,7 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
   xmlns:tools="http://schemas.android.com/tools"
   package="kattendance.dashboard.kanalytics.in.kattendance">
-  <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW"/>
+
+  <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
   <uses-permission android:name="android.permission.INTERNET" />
   <uses-permission android:name="android.permission.READ_PHONE_NUMBERS" />
   <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
@@ -33,16 +34,14 @@
     android:supportsRtl="true"
     android:theme="@style/AppTheme"
     tools:replace="android:icon">
+    <activity android:name=".Backlockstatus"></activity>
     <activity
       android:name=".BacklocklistForallUser"
       android:label="User BackLock List"
-      android:theme="@style/AppTheme1"
-      >
-
-    </activity>
+      android:theme="@style/AppTheme1"></activity>
     <activity
       android:name=".Updateattendnce"
-      android:theme="@style/Theme.AppCompat.Dialog"></activity>
+      android:theme="@style/Theme.AppCompat.Dialog" />
     <activity
       android:name=".BacklockList"
       android:label="Back Lock List"
