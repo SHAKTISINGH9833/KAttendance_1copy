@@ -34,17 +34,38 @@
     android:supportsRtl="true"
     android:theme="@style/AppTheme"
     tools:replace="android:icon">
-    <activity android:name=".Backlockstatus"></activity>
+    <activity android:name=".UserBacklogstatus"
+      android:label="BackLog Status "
+      android:theme="@style/AppTheme1"
+      >
+
+    </activity>
     <activity
-      android:name=".BacklocklistForallUser"
-      android:label="User BackLock List"
-      android:theme="@style/AppTheme1"></activity>
+      android:name=".Backlogstatus"
+      android:label="BackLog Status "
+      android:theme="@style/AppTheme1">
+      <intent-filter>
+        <action android:name="backlogstatuslist"></action>
+        <category android:name="android.intent.category.DEFAULT"></category>
+      </intent-filter>
+    </activity>
+
+    <activity
+      android:name=".BackloglistForallUser"
+      android:label="User BackLog List"
+      android:theme="@style/AppTheme1">
+      <intent-filter>
+        <action android:name="userbackloglist"></action>
+        <category android:name="android.intent.category.DEFAULT"></category>
+      </intent-filter>
+    </activity>
+
     <activity
       android:name=".Updateattendnce"
       android:theme="@style/Theme.AppCompat.Dialog" />
     <activity
-      android:name=".BacklockList"
-      android:label="Back Lock List"
+      android:name=".BacklogList"
+      android:label="BackLog List"
       android:theme="@style/AppTheme1" />
     <activity
       android:name=".HolidayListActivity"
@@ -65,7 +86,12 @@
     <activity
       android:name=".ListOfApproval"
       android:label="List Of Approvals"
-      android:theme="@style/AppTheme1" />
+      android:theme="@style/AppTheme1" >
+      <intent-filter>
+        <action android:name="ListOfApproval"></action>
+        <category android:name="android.intent.category.DEFAULT"></category>
+      </intent-filter>
+    </activity>
     <activity android:name=".OnClickImagePreview" />
     <activity
       android:name=".FingerprintActivity"
@@ -89,7 +115,12 @@
     <activity
       android:name=".LeaveApplicants"
       android:label="Leave Applicants"
-      android:theme="@style/AppTheme1" />
+      android:theme="@style/AppTheme1">
+      <intent-filter>
+        <action android:name="LeaveApplicants"></action>
+        <category android:name="android.intent.category.DEFAULT"></category>
+      </intent-filter>
+    </activity>
     <activity
       android:name=".LeaveApplicantsHistory"
       android:label="Leave Applicants"
@@ -132,6 +163,8 @@
         <action android:name="com.google.firebase.MESSAGING_EVENT" />
       </intent-filter>
     </service>
+
+    FirebaseMessageReceiver
     <service android:name=".FireIDService">
       <intent-filter>
         <action android:name="com.google.firebase.INSTANCE_ID_EVENT" />

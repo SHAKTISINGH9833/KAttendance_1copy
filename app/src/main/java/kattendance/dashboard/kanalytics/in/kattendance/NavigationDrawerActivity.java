@@ -4,12 +4,8 @@ import android.Manifest;
 import android.app.Activity;
 import android.app.AlarmManager;
 import android.app.Dialog;
-import android.app.Notification;
-import android.app.NotificationChannel;
-import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.app.ProgressDialog;
-import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -20,7 +16,6 @@ import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.graphics.drawable.ColorDrawable;
-import android.hardware.Camera;
 import android.location.Address;
 import android.location.Geocoder;
 import android.location.Location;
@@ -57,7 +52,6 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.navigation.NavigationView;
 
 import androidx.core.app.ActivityCompat;
-import androidx.core.app.NotificationCompat;
 import androidx.core.content.ContextCompat;
 import androidx.core.view.MenuItemCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
@@ -122,7 +116,6 @@ import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
@@ -149,6 +142,7 @@ public class NavigationDrawerActivity extends AppCompatActivity implements Conne
   ImageView circularButtonIn;
   Button circularButtonSubmit;
   GPSTracker gps;
+  boolean isValid;
   final Context context = this;
   private static final String TAG = "NavigationDrawerActvity";
   //CameraSource mCameraSource;
@@ -182,6 +176,7 @@ public class NavigationDrawerActivity extends AppCompatActivity implements Conne
   File destination = null;
   String filePath = null;
   Location location;
+  boolean ans = true;
   private SettingsClient mSettingsClient;
   String address;
   private LocationSettingsRequest mLocationSettingsRequest;
@@ -190,7 +185,7 @@ public class NavigationDrawerActivity extends AppCompatActivity implements Conne
   private LocationRequest locationRequest;
   private FusedLocationProviderClient fusedLocationClient;
   private LocationCallback mLocationCallback;
-  List<Backlockmodel> backlocklist =new ArrayList<>();
+  List<Backlogmodel> backlocklist =new ArrayList<>();
 
   ArrayList<String> Backlockarray=new ArrayList();
 
@@ -299,6 +294,7 @@ public class NavigationDrawerActivity extends AppCompatActivity implements Conne
     circularButtonIn.setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View v) {
+        Checkbacklock(user_id);
         new Handler().postDelayed(new Runnable() {
           @Override
           public void run() {
@@ -313,12 +309,19 @@ public class NavigationDrawerActivity extends AppCompatActivity implements Conne
       public void onClick(View view) {
         checkConnection();
         Checkbacklock(user_id);
-        String[] permissions = new String[]{
-          android.Manifest.permission.ACCESS_NETWORK_STATE,
-          android.Manifest.permission.ACCESS_FINE_LOCATION,
-          android.Manifest.permission.ACCESS_COARSE_LOCATION,
-          android.Manifest.permission.READ_SMS,
-          android.Manifest.permission.READ_PHONE_STATE};
+
+        if (isValid == false) {
+          Toast.makeText(NavigationDrawerActivity.this, "Plz Updated Logout 1st", Toast.LENGTH_SHORT).show();
+          Intent backlcok = new Intent(NavigationDrawerActivity.this, BacklogList.class);
+          startActivity(backlcok);
+        } else
+        {
+          String[] permissions = new String[]{
+            android.Manifest.permission.ACCESS_NETWORK_STATE,
+            android.Manifest.permission.ACCESS_FINE_LOCATION,
+            android.Manifest.permission.ACCESS_COARSE_LOCATION,
+            android.Manifest.permission.READ_SMS,
+            android.Manifest.permission.READ_PHONE_STATE};
         List<String> listPermissionsNeeded = new ArrayList<>();
         for (String p : permissions) {
           int result = ContextCompat.checkSelfPermission(NavigationDrawerActivity.this, p);
@@ -328,23 +331,13 @@ public class NavigationDrawerActivity extends AppCompatActivity implements Conne
         }
 
         if (!listPermissionsNeeded.isEmpty()) {
-          boolean ans = backlocklist.isEmpty();
-          if(listPermissionsNeeded.size() > -1){
-            if(ans == false)
-            {
-              Toast.makeText(NavigationDrawerActivity.this, "Plz Updated Logout 1st", Toast.LENGTH_SHORT).show();
-              Intent backlcok = new Intent(NavigationDrawerActivity.this, BacklockList.class);
-              startActivity(backlcok);
-            }else {
 
-              showLoadingDialog();
-
-            }
+          if (listPermissionsNeeded.size() > -1) {
 
 
+            showLoadingDialog();
 
-
-          }else{
+          } else {
             dismissLoadingDialog();
 
           }
@@ -354,10 +347,12 @@ public class NavigationDrawerActivity extends AppCompatActivity implements Conne
           openGpsEnableSetting();
 
         }
+      }
+
 
       }
     });
-
+    Checkbacklock(user_id);
     checkUser(mobile_number, imei_no);
     senRegistrationToken(tkn);
     initNavigationDrawer();
@@ -594,7 +589,7 @@ public class NavigationDrawerActivity extends AppCompatActivity implements Conne
 
           }
           else {
-
+            badger.setVisibility(View.GONE);
           }
         } catch (JSONException e) {
           e.printStackTrace();
@@ -637,6 +632,7 @@ public class NavigationDrawerActivity extends AppCompatActivity implements Conne
     nav_menu.findItem(R.id.leaveapplicants).setVisible(false);
     nav_menu.findItem(R.id.leaveapplicantshistory).setVisible(false);
     nav_menu.findItem(R.id.baclockuserid).setVisible(false);
+    nav_menu.findItem(R.id.clicntsidestautslist).setVisible(false);
 
 
 
@@ -707,7 +703,7 @@ public class NavigationDrawerActivity extends AppCompatActivity implements Conne
 
           }else
           {
-
+            badger.setVisibility(View.GONE);
           }
 
 
@@ -866,24 +862,29 @@ public class NavigationDrawerActivity extends AppCompatActivity implements Conne
 
         case R.id.Backlocklist:
 
-        Intent backlcok = new Intent(NavigationDrawerActivity.this, BacklockList.class);
+        Intent backlcok = new Intent(NavigationDrawerActivity.this, BacklogList.class);
         startActivity(backlcok);
         drawerLayout.closeDrawers();
         break;
 
           case R.id.baclockuserid:
 
-            Intent backlockusre = new Intent(NavigationDrawerActivity.this, BacklocklistForallUser.class);
+            Intent backlockusre = new Intent(NavigationDrawerActivity.this, BackloglistForallUser.class);
             startActivity(backlockusre);
             drawerLayout.closeDrawers();
             break;
           case R.id.backlockstatus:
 
-            Intent backlockstatus = new Intent(NavigationDrawerActivity.this, Backlockstatus.class);
+            Intent backlockstatus = new Intent(NavigationDrawerActivity.this, Backlogstatus.class);
             startActivity(backlockstatus);
             drawerLayout.closeDrawers();
             break;
+          case R.id.clicntsidestautslist:
 
+            Intent clicntsidestautslist = new Intent(NavigationDrawerActivity.this, UserBacklogstatus.class);
+            startActivity(clicntsidestautslist);
+            drawerLayout.closeDrawers();
+            break;
 
       }
 
@@ -2026,36 +2027,42 @@ checkConnection();
           JSONObject jObj = new JSONObject(response);
           Log.i("dataresponse", String.valueOf(jObj));
           JSONArray jsonMainNode = jObj.optJSONArray("results");
-          JSONArray Error = jObj.optJSONArray("error");
-          for (int i = 0; i < jsonMainNode.length(); i++) {
+          String Error = jObj.getString("error");
+          if(Error.equals("false"))
+          {
+            isValid = true;
+
+            Log.i("status", String.valueOf(isValid));
+          }
+          else {
+            for (int i = 0; i < jsonMainNode.length(); i++) {
 
 
-            JSONObject result = jsonMainNode.getJSONObject(i);
+              JSONObject result = jsonMainNode.getJSONObject(i);
+              isValid = false;
+              Log.i("status", String.valueOf(isValid));
+              String checkout = result.getString("checkout");
+              String checkin = result.getString("checkin");
 
-            String checkout = result.getString("checkout");
-            String checkin = result.getString("checkin");
-
-            if(checkout.equals("")|| checkin.equals(""))
-            {
-             Backlockmodel backlockmodel=new Backlockmodel();
-              String date = result.getString("date");
-              String newcheckout = result.getString("checkout");
-              String newcheckin = result.getString("checkin");
-              backlockmodel.setDate(date);
-              backlockmodel.setCheckin(newcheckin);
-              backlockmodel.setCheckout(newcheckout);
-              backlocklist.add(backlockmodel);
+              if (checkout.equals("") || checkin.equals("")) {
+                Backlogmodel backlogmodel = new Backlogmodel();
+                String date = result.getString("date");
+                String newcheckout = result.getString("checkout");
+                String newcheckin = result.getString("checkin");
+                backlogmodel.setDate(date);
+                backlogmodel.setCheckin(newcheckin);
+                backlogmodel.setCheckout(newcheckout);
+                backlocklist.add(backlogmodel);
 
 
-              Log.i("checkinacklocb",date);
-              Log.i("checkinacklocb",newcheckout);
-              Log.i("checkinacklocb",newcheckin);
+                Log.i("checkinacklocb", date);
+                Log.i("checkinacklocb", newcheckout);
+                Log.i("checkinacklocb", newcheckin);
 //              Toast.makeText(NavigationDrawerActivity.this, "checkin empty", Toast.LENGTH_SHORT).show();
+              }
+
+
             }
-
-
-
-
           }
 
         } catch (JSONException e) {

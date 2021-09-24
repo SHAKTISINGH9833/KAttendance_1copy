@@ -8,6 +8,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,12 +19,18 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.DividerItemDecoration;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -70,20 +77,22 @@ public class Adminbaclockadapter extends RecyclerView.Adapter<Adminbaclockadapte
   public void onBindViewHolder(@NonNull Adminbaclockadapter.ViewHolder holder, int position) {
 
      data = questionlist.get(position).getDate();
-      admin =questionlist.get(position).getAuthority_id();
+
     holder.date.setText(data);
     holder.in.setText(questionlist.get(position).getIn());
     holder.out.setText(questionlist.get(position).getOut());
     holder.name.setText(questionlist.get(position).getName());
     holder.reason.setText(questionlist.get(position).getReason());
-     userid = questionlist.get(position).getUserid();
-    baclockid = questionlist.get(position).getBacklogid();
+
+
     holder.acceptbt.setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View v) {
-
-
-        accepted_leave();
+String secteddate=questionlist.get(position).getDate();
+        baclockid = questionlist.get(position).getBacklogid();
+        userid = questionlist.get(position).getUserid();
+        admin =questionlist.get(position).getAuthority_id();
+        accepted_leave(secteddate);
         Toast.makeText(v.getContext(),"Accepted", Toast.LENGTH_LONG).show();
         questionlist.remove(position);
         notifyDataSetChanged();
@@ -93,9 +102,11 @@ public class Adminbaclockadapter extends RecyclerView.Adapter<Adminbaclockadapte
     holder.denybt.setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View v) {
-
-
-        denied_leave();
+        baclockid = questionlist.get(position).getBacklogid();
+        userid = questionlist.get(position).getUserid();
+        admin =questionlist.get(position).getAuthority_id();
+        String secteddate=questionlist.get(position).getDate();
+        denied_leave(secteddate);
         Toast.makeText(v.getContext(),"Deny", Toast.LENGTH_LONG).show();
         questionlist.remove(position);
         notifyDataSetChanged();
@@ -142,14 +153,21 @@ public class Adminbaclockadapter extends RecyclerView.Adapter<Adminbaclockadapte
 
     }
   }
-  private void accepted_leave() {
+  private void accepted_leave(final String selecteddate) {
+
     StringRequest strReq = new StringRequest(Request.Method.POST,
       ACCEPTED_Att, new Response.Listener<String>() {
       @Override
       public void onResponse(String s) {
 
+        try {
+          JSONObject jObj = new JSONObject(s);
+          Log.i("aceept_admin", String.valueOf(jObj));
+          acceptnotificationToUser(selecteddate);
+        } catch (JSONException e) {
+          e.printStackTrace();
+        }
 
-        acceptnotificationToUser();
       }
     }, new Response.ErrorListener() {
       @Override
@@ -167,8 +185,9 @@ public class Adminbaclockadapter extends RecyclerView.Adapter<Adminbaclockadapte
         params.put("user",userid);
         params.put("action", "accept");
         params.put("admin", admin);
-        params.put("date",data);
+        params.put("date",selecteddate);
         params.put("backlogid",baclockid);
+        Log.i("adminacceptparata", String.valueOf(params));
 
         return params;
       }
@@ -176,13 +195,19 @@ public class Adminbaclockadapter extends RecyclerView.Adapter<Adminbaclockadapte
     MyApplication.getInstance().addToRequestQueue(strReq);
   }
 
-  private void denied_leave() {
+  private void denied_leave(final String secteddate) {
     StringRequest strReq = new StringRequest(Request.Method.POST,
       DENIED_Att, new Response.Listener<String>() {
       @Override
       public void onResponse(String s) {
+        try {
+          JSONObject jObj = new JSONObject(s);
+          Log.i("deny_admin", String.valueOf(jObj));
+          denynotificationToUser(secteddate);
+        } catch (JSONException e) {
+          e.printStackTrace();
+        }
 
-        denynotificationToUser();
       }
     }, new Response.ErrorListener() {
       @Override
@@ -200,19 +225,25 @@ public class Adminbaclockadapter extends RecyclerView.Adapter<Adminbaclockadapte
         params.put("user",userid);
         params.put("action", "deny");
         params.put("admin", admin);
-        params.put("date",data);
+        params.put("date",secteddate);
         params.put("backlogid",baclockid);
         return params;
       }
     };
     MyApplication.getInstance().addToRequestQueue(strReq);
   }
-  private void acceptnotificationToUser() {
+  private void acceptnotificationToUser(final String selecteddate) {
     StringRequest strReq = new StringRequest(Request.Method.POST,
       NOTIFICATION_FROM_USER, new Response.Listener<String>() {
       @Override
       public void onResponse(String s) {
+        try {
+          JSONObject jObj = new JSONObject(s);
+          Log.i("acceptnotication_admin", String.valueOf(jObj));
 
+        } catch (JSONException e) {
+          e.printStackTrace();
+        }
       }
     }, new Response.ErrorListener() {
       @Override
@@ -229,19 +260,26 @@ public class Adminbaclockadapter extends RecyclerView.Adapter<Adminbaclockadapte
         Map<String, String> params = new HashMap<String, String>();
         params.put("user",userid);
         params.put("action", "notify");
-        params.put("date",data);
+        params.put("date",selecteddate);
         params.put("to","user");
+        Log.i("aceeptnotication", String.valueOf(params));
         return params;
       }
     };
     MyApplication.getInstance().addToRequestQueue(strReq);
   }
-  private void denynotificationToUser() {
+  private void denynotificationToUser(final String secteddate) {
     StringRequest strReq = new StringRequest(Request.Method.POST,
       NOTIFICATION_FROM_USER, new Response.Listener<String>() {
       @Override
       public void onResponse(String s) {
+        try {
+          JSONObject jObj = new JSONObject(s);
+          Log.i("denynotication_admin", String.valueOf(jObj));
 
+        } catch (JSONException e) {
+          e.printStackTrace();
+        }
       }
     }, new Response.ErrorListener() {
       @Override
@@ -258,8 +296,9 @@ public class Adminbaclockadapter extends RecyclerView.Adapter<Adminbaclockadapte
         Map<String, String> params = new HashMap<String, String>();
         params.put("user",userid);
         params.put("action", "notify");
-        params.put("date",data);
+        params.put("date",secteddate);
         params.put("to","user");
+        Log.i("denynotication", String.valueOf(params));
         return params;
       }
     };

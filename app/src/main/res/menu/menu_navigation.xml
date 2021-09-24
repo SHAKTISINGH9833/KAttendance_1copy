@@ -55,19 +55,25 @@
         />
       <item
         android:id="@+id/Backlocklist"
-        android:title="Back Lock List"
+        android:title="BackLog List"
         android:icon="@mipmap/ic_tickmark"
         />
       <item
         android:id="@+id/baclockuserid"
-        android:title="Back Lock User"
+        android:title="BackLog User"
         android:icon="@mipmap/ic_tickmark"
         />
       <item
         android:id="@+id/backlockstatus"
-        android:title="Back Lock Status"
+        android:title="BackLog Status"
         android:icon="@mipmap/ic_tickmark"
         />
+      <item
+        android:id="@+id/clicntsidestautslist"
+        android:title="BackLog Status User "
+        android:icon="@mipmap/ic_tickmark"
+        />
+
 
 
 

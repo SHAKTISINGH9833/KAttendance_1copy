@@ -1,14 +1,96 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
   xmlns:app="http://schemas.android.com/apk/res-auto"
   xmlns:tools="http://schemas.android.com/tools"
   android:layout_width="match_parent"
   android:layout_height="match_parent"
-  tools:context=".Backlockstatus">
-  <LinearLayout
+  android:orientation="vertical"
+  tools:context=".Backlogstatus">
+  <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
-    
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".BackloglistForallUser">
+
+
+    <EditText
+      android:id="@+id/inputTypeDateRepotingPeople"
+      android:layout_width="fill_parent"
+      android:layout_height="wrap_content"
+      android:layout_marginBottom="5dp"
+      android:background="@drawable/edit_text_background_layout"
+      android:hint="Select Date"
+      android:inputType="date"
+      android:textAllCaps="true"
+      android:padding="5dp"
+      android:layout_marginTop="10dp"
+      android:layout_marginLeft="10dp"
+      android:layout_marginRight="10dp"
+      android:singleLine="true"
+      android:focusable="false"
+      android:focusableInTouchMode="false"
+      android:fontFamily="sans-serif-light"
+      android:textColor="@color/input_login"
+      android:textColorHint="@color/input_login_hint" />
+
+    <androidx.cardview.widget.CardView
+      android:layout_width="match_parent"
+      android:layout_height="match_parent"
+      android:background="@drawable/rounded_box"
+      android:layout_marginLeft="10dip"
+      app:cardCornerRadius="10dip"
+      android:layout_marginRight="10dip"
+      android:layout_marginBottom="10dip"
+      android:layout_marginTop="10dip"
+
+      >
+      <LinearLayout
+        android:id="@+id/nodataid"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+
+        android:visibility="gone"
+
+        >
+        <TextView
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:text="No Data Found !"
+          android:textSize="18sp"
+          android:textStyle="bold"
+          android:textColor="@color/quantum_orange"
+
+          >
+
+        </TextView>
+      </LinearLayout>
+      <LinearLayout
+        android:id="@+id/listid"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="10dip"
+
+        android:orientation="horizontal">
+
+
+
+
+
+        <androidx.recyclerview.widget.RecyclerView
+          android:id="@+id/usarbacklockstatus"
+          android:layout_width="match_parent"
+          android:layout_height="match_parent"
+          android:autofillHints="Shaktisingh yadav"
+
+          >
+
+        </androidx.recyclerview.widget.RecyclerView>
+      </LinearLayout>
+    </androidx.cardview.widget.CardView>
+
   </LinearLayout>
 
-</RelativeLayout>
+</LinearLayout>

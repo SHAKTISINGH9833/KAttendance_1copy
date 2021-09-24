@@ -21,6 +21,7 @@ public class FireMsgService extends FirebaseMessagingService {
     private static final String TAG = "FCM Service";
 
     private Context mContext;
+
     private NotificationManager mNotificationManager;
     private NotificationCompat.Builder mBuilder;
     public static final String NOTIFICATION_CHANNEL_ID = "10001";
@@ -35,7 +36,14 @@ public class FireMsgService extends FirebaseMessagingService {
       //String userid,authority_id;
       //Calling method to generate notification
       String message = remoteMessage.getNotification().getBody();
+      String click_action=remoteMessage.getNotification().getClickAction();
+
+
       String TrueOrFlase = remoteMessage.getData().get("AnotherActivity");
+
+
+      Log.i("Body", TrueOrFlase);
+
       String counter = "1";
 
       //sendNotification();
@@ -43,7 +51,7 @@ public class FireMsgService extends FirebaseMessagingService {
 
       if (TrueOrFlase.trim().equals("false")) {
 
-          sendNotification(message);
+          sendNotification(message,click_action);
 
       } else if (TrueOrFlase.trim().equals("true")) {
 
@@ -53,6 +61,33 @@ public class FireMsgService extends FirebaseMessagingService {
 
           leaveNotificationFromUser(message, counter);
       }
+      else if (click_action.equals("backlogstatuslist")) {
+
+        sendNotification(message,click_action);
+      }
+
+      else if (click_action.equals("userbackloglist")) {
+
+        sendNotification(message,click_action);
+      }
+      else if (TrueOrFlase.equals("userlist")) {
+
+        backloguserstatuts(message,counter);
+      }
+      else if (TrueOrFlase.equals("adminlist")) {
+
+        BackloglistForallUser(message,counter);
+      }
+      else if (click_action.equals("ListOfApproval")) {
+
+        sendNotification(message,click_action);
+      }
+      else if (click_action.equals("LeaveApplicants")) {
+
+        sendNotification(message,click_action);
+      }
+
+
 
       /*if (remoteMessage.getNotification() != null && remoteMessage.getData() != null) {
         sendNotificationfromserver(message, userid, authority_id);
@@ -139,6 +174,133 @@ public class FireMsgService extends FirebaseMessagingService {
     mNotificationManager.notify(0 /* Request Code */, mBuilder.build());
   }
 
+  private void backloguserstatuts(String message, String counter) {
+
+    /*int notifyID = 0;
+    try {
+      //notifyID = Integer.parseInt(brand_id);
+    } catch (NumberFormatException e) {
+
+      e.printStackTrace();
+
+    }
+
+    String CHANNEL_ID = "my_channel_01";
+    Intent intent=new Intent(this,LeaveApplicants.class);
+    intent.putExtra("counter",counter);
+    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+    PendingIntent pendingIntent1 = PendingIntent.getActivity(this, 0, intent,
+      PendingIntent.FLAG_ONE_SHOT);
+    Uri defaultSoundUri= RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
+    NotificationCompat.Builder notificationBuilder1 = new NotificationCompat.Builder(this)
+      .setSmallIcon(R.mipmap.ic_icons)
+      .setContentTitle("Leave Notification")
+      .setContentText(message)
+      .setAutoCancel(true)
+      .setSound(defaultSoundUri)
+      .setContentIntent(pendingIntent1);
+
+    NotificationManager notificationManager =
+      (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+
+    notificationManager.notify(0, notificationBuilder1.build());*/
+
+    Intent resultIntent = new Intent(getApplication() , Backlogstatus.class);
+    //resultIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+    //resultIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+
+    PendingIntent resultPendingIntent = PendingIntent.getActivity(mContext,
+      0 /* Request code */, resultIntent,
+      PendingIntent.FLAG_UPDATE_CURRENT);
+
+    mBuilder = new NotificationCompat.Builder(mContext);
+    mBuilder.setSmallIcon(R.mipmap.ic_icons);
+    mBuilder.setContentTitle("Backlog Notification")
+      .setContentText(message)
+      .setAutoCancel(true)
+      .setSound(Settings.System.DEFAULT_NOTIFICATION_URI)
+      .setContentIntent(resultPendingIntent);
+
+    mNotificationManager = (NotificationManager) mContext.getSystemService(Context.NOTIFICATION_SERVICE);
+
+    if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O)
+    {
+      int importance = NotificationManager.IMPORTANCE_HIGH;
+      NotificationChannel notificationChannel = new NotificationChannel(NOTIFICATION_CHANNEL_ID, "NOTIFICATION_CHANNEL_NAME", importance);
+      notificationChannel.enableLights(true);
+      notificationChannel.setLightColor(Color.RED);
+      notificationChannel.enableVibration(true);
+      notificationChannel.setVibrationPattern(new long[]{100, 200, 300, 400, 500, 400, 300, 200, 400});
+      assert mNotificationManager != null;
+      mBuilder.setChannelId(NOTIFICATION_CHANNEL_ID);
+      mNotificationManager.createNotificationChannel(notificationChannel);
+    }
+    assert mNotificationManager != null;
+    mNotificationManager.notify(0 /* Request Code */, mBuilder.build());
+  }
+  private void BackloglistForallUser(String message, String counter) {
+    /*int notifyID = 0;
+    try {
+      //notifyID = Integer.parseInt(brand_id);
+    } catch (NumberFormatException e) {
+
+      e.printStackTrace();
+
+    }
+
+    String CHANNEL_ID = "my_channel_01";
+    Intent intent=new Intent(this,LeaveApplicants.class);
+    intent.putExtra("counter",counter);
+    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+    PendingIntent pendingIntent1 = PendingIntent.getActivity(this, 0, intent,
+      PendingIntent.FLAG_ONE_SHOT);
+    Uri defaultSoundUri= RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
+    NotificationCompat.Builder notificationBuilder1 = new NotificationCompat.Builder(this)
+      .setSmallIcon(R.mipmap.ic_icons)
+      .setContentTitle("Leave Notification")
+      .setContentText(message)
+      .setAutoCancel(true)
+      .setSound(defaultSoundUri)
+      .setContentIntent(pendingIntent1);
+
+    NotificationManager notificationManager =
+      (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+
+    notificationManager.notify(0, notificationBuilder1.build());*/
+    Intent resultIntent = new Intent(mContext , BackloglistForallUser.class);
+    //resultIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+    //resultIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+
+    PendingIntent resultPendingIntent = PendingIntent.getActivity(mContext,
+      0 /* Request code */, resultIntent,
+      PendingIntent.FLAG_UPDATE_CURRENT);
+
+    mBuilder = new NotificationCompat.Builder(mContext);
+    mBuilder.setSmallIcon(R.mipmap.ic_icons);
+    mBuilder.setContentTitle("Backlog Notification")
+      .setContentText(message)
+      .setAutoCancel(true)
+      .setSound(Settings.System.DEFAULT_NOTIFICATION_URI)
+      .setContentIntent(resultPendingIntent);
+
+    mNotificationManager = (NotificationManager) mContext.getSystemService(Context.NOTIFICATION_SERVICE);
+
+    if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O)
+    {
+      int importance = NotificationManager.IMPORTANCE_HIGH;
+      NotificationChannel notificationChannel = new NotificationChannel(NOTIFICATION_CHANNEL_ID, "NOTIFICATION_CHANNEL_NAME", importance);
+      notificationChannel.enableLights(true);
+      notificationChannel.setLightColor(Color.RED);
+      notificationChannel.enableVibration(true);
+      notificationChannel.setVibrationPattern(new long[]{100, 200, 300, 400, 500, 400, 300, 200, 400});
+      assert mNotificationManager != null;
+      mBuilder.setChannelId(NOTIFICATION_CHANNEL_ID);
+      mNotificationManager.createNotificationChannel(notificationChannel);
+    }
+    assert mNotificationManager != null;
+    mNotificationManager.notify(0 /* Request Code */, mBuilder.build());
+  }
+
   private void sendNotificationfromserver(String messageBody,String counter) {
     /*int notifyID = 0;
     try {
@@ -199,7 +361,8 @@ public class FireMsgService extends FirebaseMessagingService {
     mNotificationManager.notify(0 /* Request Code */, mBuilder.build());
   }
 
-  private void sendNotification(String message) {
+  private void sendNotification(String message,String action_click) {
+
     /*int notifyID = 0;
     try {
      // notifyID = Integer.parseInt(brand_id);
@@ -227,20 +390,74 @@ public class FireMsgService extends FirebaseMessagingService {
     notificationManager.notify(0, notificationBuilder.build());*/
 
     /**Creates an explicit intent for an Activity in your app**/
-    Intent resultIntent = new Intent(mContext , MainActivity.class);
-    resultIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+    if (action_click.equals("backlogstatuslist"))
+    {
+      Intent resultIntent = new Intent(mContext , Backlogstatus.class);
+      resultIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 
-    PendingIntent resultPendingIntent = PendingIntent.getActivity(mContext,
-      0 /* Request code */, resultIntent,
-      PendingIntent.FLAG_UPDATE_CURRENT);
+      PendingIntent resultPendingIntent = PendingIntent.getActivity(mContext,
+        0 /* Request code */, resultIntent,
+        PendingIntent.FLAG_UPDATE_CURRENT);
 
-    mBuilder = new NotificationCompat.Builder(mContext);
-    mBuilder.setSmallIcon(R.mipmap.ic_icons);
-    mBuilder.setContentTitle("Kanalyics(In/Out)")
-      .setContentText(message)
-      .setAutoCancel(true)
-      .setSound(Settings.System.DEFAULT_NOTIFICATION_URI)
-      .setContentIntent(resultPendingIntent);
+      mBuilder = new NotificationCompat.Builder(mContext);
+      mBuilder.setSmallIcon(R.mipmap.ic_icons);
+      mBuilder.setContentTitle("Kanalyics(In/Out)")
+        .setContentText(message)
+        .setAutoCancel(true)
+        .setSound(Settings.System.DEFAULT_NOTIFICATION_URI)
+        .setContentIntent(resultPendingIntent);
+    }
+    else if(action_click.equals("userbackloglist")) {
+      Intent resultIntent = new Intent(mContext , BackloglistForallUser.class);
+
+      resultIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+
+
+      PendingIntent resultPendingIntent = PendingIntent.getActivity(mContext,
+        0 /* Request code */, resultIntent,
+        PendingIntent.FLAG_UPDATE_CURRENT);
+
+      mBuilder = new NotificationCompat.Builder(mContext);
+      mBuilder.setSmallIcon(R.mipmap.ic_icons);
+      mBuilder.setContentTitle("Kanalyics(In/Out)")
+        .setContentText(message)
+        .setAutoCancel(true)
+        .setSound(Settings.System.DEFAULT_NOTIFICATION_URI)
+        .setContentIntent(resultPendingIntent);
+    }
+    else if(action_click.equals("ListOfApproval")) {
+      Intent resultIntent = new Intent(mContext , ListOfApproval.class);
+      resultIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+
+      PendingIntent resultPendingIntent = PendingIntent.getActivity(mContext,
+        0 /* Request code */, resultIntent,
+        PendingIntent.FLAG_UPDATE_CURRENT);
+
+      mBuilder = new NotificationCompat.Builder(mContext);
+      mBuilder.setSmallIcon(R.mipmap.ic_icons);
+      mBuilder.setContentTitle("Kanalyics(In/Out)")
+        .setContentText(message)
+        .setAutoCancel(true)
+        .setSound(Settings.System.DEFAULT_NOTIFICATION_URI)
+        .setContentIntent(resultPendingIntent);
+    }
+    else if(action_click.equals("LeaveApplicants")) {
+      Intent resultIntent = new Intent(mContext , LeaveApplicants.class);
+      resultIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+
+      PendingIntent resultPendingIntent = PendingIntent.getActivity(mContext,
+        0 /* Request code */, resultIntent,
+        PendingIntent.FLAG_UPDATE_CURRENT);
+
+      mBuilder = new NotificationCompat.Builder(mContext);
+      mBuilder.setSmallIcon(R.mipmap.ic_icons);
+      mBuilder.setContentTitle("Kanalyics(In/Out)")
+        .setContentText(message)
+        .setAutoCancel(true)
+        .setSound(Settings.System.DEFAULT_NOTIFICATION_URI)
+        .setContentIntent(resultPendingIntent);
+    }
+
 
     mNotificationManager = (NotificationManager) mContext.getSystemService(Context.NOTIFICATION_SERVICE);
 

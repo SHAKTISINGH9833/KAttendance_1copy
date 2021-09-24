@@ -36,14 +36,16 @@ public class Updateattendnce extends AppCompatActivity {
   TextView login,logout;
   String lat,Lon;
   Button update;
-  BacklockList backlockList;
-  List<Backlockmodel> questionlist;
+  BacklogList backlockList;
+  List<Backlogmodel> questionlist;
   TextView date;
   EditText message;
   private GpsTrackeNew gpsTracker;
   String user_id;
+  boolean isValid;
   private static final String UPDATEDATTAENDACE_LIST = "https://dashboard.kanalytics.in/mobile_app/attendance/backlog_submit.php";
   private static final String NOTIFICATION_FROM_UPDATE_ADMIN = "https://dashboard.kanalytics.in/mobile_app/attendance/backlog_action.php";
+  private static final String BACKLOCK_LIST = "https://dashboard.kanalytics.in/mobile_app/attendance/backlog_check.php";
   private Intent myIntent;
   String datetext,checkintext,checkouttext;
 
@@ -51,11 +53,13 @@ public class Updateattendnce extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_updateattendnce);
+
       SharedPreferences shared = getSharedPreferences("info", MODE_PRIVATE);
       SharedPreferences Status = getSharedPreferences("Status", MODE_PRIVATE);
 
       questionlist=new ArrayList<>();
       user_id = shared.getString("user_id", "");
+
       Log.i("userid",user_id);
         login=findViewById(R.id.loginedit);
         logout=findViewById(R.id.logoutedit);
@@ -138,6 +142,7 @@ public class Updateattendnce extends AppCompatActivity {
 
           getLocation();
           Updateattaendace();
+
         }
       });
 
@@ -175,8 +180,14 @@ public class Updateattendnce extends AppCompatActivity {
               String Msg = jsonMainNode.getString("msg");
               Toast.makeText(Updateattendnce.this, Msg, Toast.LENGTH_SHORT).show();
               acceptnotificationToadmin();
+              Checkbacklock(user_id);
+              Intent backlcok = new Intent(Updateattendnce.this, BacklogList.class);
+              startActivity(backlcok);
 
-              finish();
+
+
+
+
 
 //              List<Backlockmodel>newList =questionlist;
 //              backlockList.finish();
@@ -189,7 +200,7 @@ public class Updateattendnce extends AppCompatActivity {
             } catch (JSONException e) {
               e.printStackTrace();
             }
-
+            finish();
           }
         }, new Response.ErrorListener() {
           @Override
@@ -234,10 +245,28 @@ public class Updateattendnce extends AppCompatActivity {
     }
   }
   private void acceptnotificationToadmin() {
+
     StringRequest strReq = new StringRequest(Request.Method.POST,
       NOTIFICATION_FROM_UPDATE_ADMIN, new Response.Listener<String>() {
       @Override
       public void onResponse(String s) {
+        try {
+          JSONObject jObj = new JSONObject(s);
+          String Success=jObj.getString("success");
+//          if(Success.equals("1"))
+//          {
+//            Toast.makeText(Updateattendnce.this, "Successfully sent Notification to Admin", Toast.LENGTH_SHORT).show();
+//          }
+//          else {
+////            Toast.makeText(Updateattendnce.this, "Notification is Not working", Toast.LENGTH_SHORT).show();
+//          }
+          Log.i("adminnotify", String.valueOf(jObj));
+
+
+        } catch (JSONException e) {
+          e.printStackTrace();
+        }
+
 
       }
     }, new Response.ErrorListener() {
@@ -254,12 +283,76 @@ public class Updateattendnce extends AppCompatActivity {
 
         Map<String, String> params = new HashMap<String, String>();
         params.put("user",user_id);
-        params.put("action", "notify");
-        params.put("date", String.valueOf(date));
+        params.put("action","notify");
+        params.put("date",datetext);
         params.put("to","admin");
+        Log.i("updateadinnotication", String.valueOf(params));
         return params;
       }
     };
     MyApplication.getInstance().addToRequestQueue(strReq);
+  }
+
+
+  private void Checkbacklock(final String user_id) {
+//
+    String tag_string_req = "req_register";
+
+    //Toast.makeText(this, "Checking user", Toast.LENGTH_SHORT).show();
+    StringRequest strReq = new StringRequest(Request.Method.POST, BACKLOCK_LIST, new Response.Listener<String>() {
+      @Override
+      public void onResponse(String response) {
+
+        try {
+          JSONObject jObj = new JSONObject(response);
+          Log.i("dataresponse", String.valueOf(jObj));
+          JSONArray jsonMainNode = jObj.optJSONArray("results");
+          String Error = jObj.getString("error");
+          if(Error.equals("false"))
+          {
+            isValid = true;
+
+            Log.i("status", String.valueOf(isValid));
+            Intent intent=new Intent(Updateattendnce.this,NavigationDrawerActivity.class);
+            startActivity(intent);
+          }
+          else {
+            for (int i = 0; i < jsonMainNode.length(); i++) {
+
+
+              JSONObject result = jsonMainNode.getJSONObject(i);
+
+              isValid = false;
+              Log.i("status", String.valueOf(isValid));
+
+
+
+            }
+          }
+
+        } catch (JSONException e) {
+          e.printStackTrace();
+        }
+      }
+    }, new Response.ErrorListener() {
+      @Override
+      public void onErrorResponse(VolleyError error) {
+
+      }
+    }) {
+
+      @Override
+      protected Map<String, String> getParams() {
+
+
+        Map<String, String> params = new HashMap<String, String>();
+
+        params.put("user_id", user_id);
+//        params.put("user_phone_imei", imei_no);
+        return params;
+      }
+
+    };
+    MyApplication.getInstance().addToRequestQueue(strReq, tag_string_req);
   }
 }

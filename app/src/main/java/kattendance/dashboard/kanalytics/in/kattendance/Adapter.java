@@ -2,20 +2,13 @@ package kattendance.dashboard.kanalytics.in.kattendance;
 
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Color;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.CheckBox;
 import android.widget.ImageButton;
-import android.widget.LinearLayout;
-import android.widget.RadioButton;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.recyclerview.widget.DiffUtil;
 import androidx.recyclerview.widget.RecyclerView;
 
 
@@ -29,17 +22,14 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder> {
   public String value;
   //    List<questionanssetmodel> setlis =new ArrayList<>();
   ArrayList<String> listOfSelectedCheckBoxId = new ArrayList();
-  List<Backlockmodel> questionlist;
+  List<Backlogmodel> questionlist;
 
 
-  public Adapter(Context ctx, List<Backlockmodel> questionlist) {
+  public Adapter(Context ctx, List<Backlogmodel> questionlist) {
     this.inflater = LayoutInflater.from(ctx);
     this.questionlist = questionlist;
   }
-  public void updateList(ArrayList<Backlockmodel> newList) {
-    DiffUtil.DiffResult diffResult = DiffUtil.calculateDiff(new MyDiffCallback(this.questionlist, newList));
-    diffResult.dispatchUpdatesTo(this);
-  }
+
 
   public Adapter() {
 
@@ -55,7 +45,7 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder> {
 
   @Override
   public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-    final Backlockmodel backlockmodel = questionlist.get(position);
+    final Backlogmodel backlogmodel = questionlist.get(position);
     String data = questionlist.get(position).getDate();
     holder.txtDateList.setText(data);
     holder.txtTimeInList.setText(questionlist.get(position).getCheckin());
@@ -70,13 +60,14 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder> {
         intent.putExtra("Date",questionlist.get(position).getDate());
         intent.putExtra("checkin",questionlist.get(position).getCheckin());
         intent.putExtra("checkout",questionlist.get(position).getCheckout());
+
+
         v.getContext().startActivity(intent);
 //        String url = response.get(position).getUrl();
 //        Bundle bundle = new Bundle();
 //        bundle.putString("key_1",url);
 //        intent.putExtras(bundle);
-        questionlist.remove(position);
-        notifyDataSetChanged();
+
 //        Toast.makeText(inflater.getContext(), "item selected", Toast.LENGTH_SHORT).show();
       }
     });

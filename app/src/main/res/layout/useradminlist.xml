@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+  android:layout_width="match_parent"
+  android:layout_height="wrap_content"
+  android:orientation="vertical"
+  >
+
+
+  <LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="0dip"
+    android:layout_marginBottom="0dip"
+    android:layout_marginRight="10dip"
+    android:layout_marginLeft="10dip"
+    android:gravity="start"
+    android:padding="2dip"
+    android:orientation="horizontal">
+
+    <TextView
+      android:id="@+id/nameid"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:text="Shakti Singh Yadav"
+      android:textStyle="bold"
+      android:textSize="14dip"
+
+      ></TextView>
+
+  </LinearLayout>
+  <LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="0dip"
+    android:layout_marginBottom="0dip"
+    android:layout_marginRight="10dip"
+    android:layout_marginLeft="10dip"
+    android:gravity="start"
+    android:padding="2dip"
+    android:orientation="vertical">
+    <LinearLayout
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_marginTop="0dip"
+      android:layout_marginBottom="0dip"
+      android:layout_marginRight="0dip"
+      android:layout_marginLeft="0dip"
+
+      android:padding="0dip"
+      android:orientation="horizontal">
+      <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="IN :"
+        android:textStyle="bold"
+        android:textSize="12dip"
+
+        ></TextView>
+      <TextView
+        android:id="@+id/inid"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="10:20:23"
+        android:textStyle="italic"
+        android:textSize="12dip"
+
+        ></TextView>
+    </LinearLayout>
+    <LinearLayout
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_marginTop="0dip"
+      android:layout_marginBottom="0dip"
+      android:layout_marginRight="10dip"
+      android:layout_marginLeft="0dip"
+      android:gravity="end"
+      android:padding="0dip"
+      android:orientation="horizontal">
+      <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="OUT :"
+        android:textStyle="bold"
+        android:textSize="12dip"
+
+        ></TextView>
+      <TextView
+        android:id="@+id/outid"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="10:20:23"
+        android:textStyle="italic"
+        android:textSize="12dip"
+
+        ></TextView>
+
+
+    </LinearLayout>
+
+  </LinearLayout>
+  <LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="0dip"
+    android:layout_marginBottom="0dip"
+    android:layout_marginRight="10dip"
+    android:layout_marginLeft="10dip"
+    android:gravity="start"
+    android:padding="2dip"
+    android:orientation="horizontal">
+    <TextView
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:text="Reason :"
+      android:textStyle="bold"
+      android:textSize="14dip"
+
+      ></TextView>
+    <TextView
+      android:id="@+id/reseonid"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:text="Forgot to Logout"
+      android:textStyle="italic"
+      android:textSize="14dip"
+
+      ></TextView>
+
+
+  </LinearLayout>
+  <LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="5dip"
+    android:layout_marginBottom="0dip"
+    android:layout_marginRight="10dip"
+    android:layout_marginLeft="10dip"
+    android:gravity="start"
+    android:orientation="horizontal">
+    <TextView
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:text="Date :"
+      android:textStyle="bold"
+      android:textSize="12dip"
+
+      ></TextView>
+
+    <TextView
+      android:id="@+id/dateid"
+      android:layout_width="wrap_content"
+      android:layout_height="match_parent"
+      android:text="!0-02-2021"
+      android:textSize="12dip"
+      android:textStyle="italic"
+
+      ></TextView>
+
+  </LinearLayout>
+  <LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="10dip"
+    android:layout_marginBottom="10dip"
+    android:layout_marginRight="10dip"
+    android:layout_marginLeft="10dip"
+    android:gravity="end"
+    android:padding="0dip"
+    android:orientation="horizontal">
+
+    <TextView
+      android:id="@+id/Status"
+      android:layout_width="wrap_content"
+      android:layout_height="match_parent"
+      android:text="Aapprove"
+      android:textSize="14sp"
+      android:textColor="#00FF00"
+      android:textStyle="bold"
+
+
+      ></TextView>
+  </LinearLayout>
+
+</LinearLayout>
+
